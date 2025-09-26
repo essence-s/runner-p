@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   runner:
-    image: myoung34/docker-github-actions-runner:latest
+    image: myoung34/github-runner
     container_name: github-runner
     environment:
       REPO_URL: 'https://github.com/essence-s/runner-p'
