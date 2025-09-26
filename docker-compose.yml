@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  runner:
+    image: myoung34/docker-github-actions-runner:latest
+    container_name: github-runner
+    environment:
+      REPO_URL: 'https://github.com/essence-s/runner-p'
+      RUNNER_NAME: 'runner-01'
+      RUNNER_TOKEN: '${RUNNER_TOKEN}'
+      RUNNER_LABELS: 'self-hosted,linux'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swbot-app
+    environment:
+      NODE_ENV: production
+    ports:
+      - '3000:3000'
+    depends_on:
+      - runner
+    restart: unless-stopped
