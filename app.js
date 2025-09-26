@@ -1,1 +1,2 @@
-console.log('dinosaurio 2');
+console.log('Aplicación en ejecución...');
+setInterval(() => {}, 1000);
